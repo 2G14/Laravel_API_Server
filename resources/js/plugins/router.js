@@ -22,9 +22,9 @@ export default new Router({
       path: "/user/:id",
       component: User
     },
-//    {
-//      path: "*",
-//      redirect: "/login"
-//    },
+    {
+      path: "*",
+      redirect: "/login"
+    },
   ]
 })
