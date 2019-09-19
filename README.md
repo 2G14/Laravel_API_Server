@@ -14,7 +14,7 @@
 ```bash
 $ cp .env.example .env
 $ vim .env # DB関連を設定
-$ php artisan ket:generate
+$ php artisan key:generate
 $ php artisan config:cache
 $ composer install # ライブラリインストール
 $ php artisan migrate:generate # 既存テーブルから定義を作成
