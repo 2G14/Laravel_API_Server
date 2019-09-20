@@ -1,15 +1,19 @@
 <template>
   <div>
     <h3>Users Table</h3>
-    <v-data-table dense :headers="headers" :items="users" multi-sort show-expand></v-data-table>
+    <DBTable :headers="headers" :items="users" :items-per-page="10" />
   </div>
 </template>
 
 <script>
 import axios from "axios";
+import DBTable from "./DBTable/DBTable.vue";
 
 export default {
   name: "users-table",
+  components: {
+    DBTable
+  },
   data: function() {
     return {
       headers: [],

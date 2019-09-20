@@ -1,7 +1,8 @@
 <template>
   <div>
-    <h1>{{ $route.params.id }}</h1>
-    {{ this.user }}
+    <template v-for="(value, key) in user">
+      <div>{{ key }} : {{ value }}</div>
+    </template>
   </div>
 </template>
 
@@ -16,10 +17,7 @@ export default {
     };
   },
   mounted () {
-    axios
-      .get('/api/users/' + this.$route.params.id)
-      .then(response => (this.user = response.data));
-    console.log(this.user);
+    axios.get('/api/users/' + this.$route.params.id).then(response => (this.user = response.data));
   }
 };
 </script>
