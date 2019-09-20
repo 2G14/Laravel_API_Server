@@ -7,7 +7,6 @@
   <title>Title</title>
 </head>
 <body>
-<h1>sample</h1>
 <div id="app"></div>
 <script src="{{ asset('/js/app.js') }}"></script>
 </body>
