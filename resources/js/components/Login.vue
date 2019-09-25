@@ -1,4 +1,4 @@
-<template>
+<templete>
   <div>
     <h1>Login</h1>
     <router-link to="/users">

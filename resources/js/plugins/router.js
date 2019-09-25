@@ -11,10 +11,10 @@ export default new Router({
   mode: "history",
   base: process.env.BASE_URL,
   routes: [
-    {
-      path: "/login",
-      component: Login
-    },
+    //{
+    //  path: "/login",
+    //  component: Login
+    //},
     {
       path: "/users",
       component: UsersTable2
