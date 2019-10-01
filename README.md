@@ -32,13 +32,6 @@ DB_USERNAME=[username]
 DB_PASSWORD=[password]
 ```
 
-ブラウザでは
-
-- http://localhost:8000/api/users
-- http://localhost:8000/api/users/{id}
-
-でDB内容が閲覧可能。
-
 今回はGETしか実装していません。
 
 ## DB接続
@@ -112,7 +105,3 @@ Vuetifyを利用する場合
 ```bash
 $ yarn add --dev vuetify vuetify-loader @mdi/font
 ```
-
-##### ページネーション
-
-[Vuetifyのv-data-tableを使ってサーバサイドページネーションを行う参考サーバサイドページネーション](https://codepen.io/pen/?&editable=true&editors=101){:target="_blank"}
