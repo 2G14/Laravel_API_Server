@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>Users Table</h3>
-    <DBTable :headers="headers" :items="users" :items-per-page="10" />
+    <DBTable :headers="headers" :items="users" :rows-per-page="10" />
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
   <tbody>
-    <template v-for="item in itemsOfPage"> 
+    <template v-for="item in itemsPerPage">
       <tr @click="$router.push({ path: `user/${item.id}`})">
         <template v-for="field in item">
           <td :align="typeof field == 'number' ? 'right' : 'left'">{{ field }}</td>
@@ -18,21 +18,20 @@ export default {
       type: Array,
       required: true
     },
-    itemsPerPage: {
+    rowsPerPage: {
+      type: Number,
+      required: true
+    },
+    pageOffset: {
       type: Number,
       required: true
     }
   },
-  data: function() {
-    return {
-      page_offset: 1,
-    };
-  },
   computed: {
-    itemsOfPage: function() {
-      const startIndex = (this.page_offset - 1) * this.$props.itemsPerPage;
-      const endIndex = Math.min(startIndex + this.$props.itemsPerPage, this.$props.items.length);
-      return this.items.slice(startIndex, endIndex);
+    itemsPerPage: function() {
+      const startIndex = (this.$props.pageOffset - 1) * this.$props.rowsPerPage;
+      const endIndex = Math.min(startIndex + this.$props.rowsPerPage, this.$props.items.length);
+      return this.$props.items.slice(startIndex, endIndex);
     }
   }
 };
