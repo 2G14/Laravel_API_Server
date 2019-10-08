@@ -105,3 +105,25 @@ Vuetifyを利用する場合
 ```bash
 $ yarn add --dev vuetify vuetify-loader @mdi/font
 ```
+
+#### ページネーション
+
+Laravelのページネーションを利用すると、このような形式のレスポンスが帰ってくる. 
+実際のデータはdata配列部分に並ぶ. 
+
+```json
+{
+  "current_page":1,
+  "data":[],
+  "first_page_url":"http:\/\/localhost:8000\/paginate?page=1",
+  "from":1,
+  "last_page":6,
+  "last_page_url":"http:\/\/localhost:8000\/paginate?page=6",
+  "next_page_url":"http:\/\/localhost:8000\/paginate?page=2",
+  "path":"http:\/\/localhost:8000\/paginate",
+  "per_page":10,
+  "prev_page_url":null,
+  "to":10,
+  "total":55
+}
+```

@@ -3,6 +3,7 @@ import Router from "vue-router";
 import Login from "./../components/Login.vue";
 import UsersTable from "./../components/UsersTable.vue";
 import UsersTable2 from "./../components/UsersTable2.vue";
+import UsersTable3 from "./../components/UsersTable3.vue";
 import User from "./../components/User.vue"
 
 Vue.use(Router);
@@ -17,7 +18,7 @@ export default new Router({
     //},
     {
       path: "/users",
-      component: UsersTable2
+      component: UsersTable3
     },
     {
       path: "/user/:id",
