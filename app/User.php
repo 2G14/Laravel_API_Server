@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Model
 {
   protected $table = 'users';
-  public function scopeContains($query, string $target, string $str)
+  public function scopeContains($query, string $field, string $value)
   {
-    return $query->where($target, 'LIKE', "%$str%");
+    return $query->where($field, 'LIKE', "%$value%");
   }
 }

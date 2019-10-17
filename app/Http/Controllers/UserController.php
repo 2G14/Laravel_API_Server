@@ -70,18 +70,25 @@ class UserController extends Controller
     //
   }
 
+  /**
+   * 複雑な検索条件を考えるとjsonをpostさせるほうが良いかもしれない
+   * 構成案: [{field:対象フィールド,op:動作,value:使用する文字列等},{...},...]
+   */
   public function showBy(Request $request)
   {
-    $target = $request->input('target');
+    $query = User::query();
+    
+    $field = $request->input('field');
     $op = $request->input('op');
+    $value = $request->input('value');
     switch ($op) {
     case "contains":
-      // query処理
+      $query->contains($field, $value);
       break;
     default:
       // エラーレスポンス
       break;
     }
-    return User::contains('nickname', $target)->get();
+    return $query->get();
   }
 }
