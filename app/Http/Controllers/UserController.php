@@ -69,4 +69,19 @@ class UserController extends Controller
   {
     //
   }
+
+  public function showBy(Request $request)
+  {
+    $target = $request->input('target');
+    $op = $request->input('op');
+    switch ($op) {
+    case "contains":
+      // query処理
+      break;
+    default:
+      // エラーレスポンス
+      break;
+    }
+    return User::contains('nickname', $target)->get();
+  }
 }
