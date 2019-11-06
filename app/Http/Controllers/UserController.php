@@ -72,38 +72,46 @@ class UserController extends Controller
   }
 
   /**
-   * 複雑な検索条件を考えるとjsonをpostさせるほうが良いかもしれない
-   * 構成案: [{field:対象フィールド,op:動作,value:使用する文字列等},{...},...]
+   * 検索
    */
   public function showBy(Request $request)
   {
     $query = User::query();
+    
+    $per_page = $request->input('per_page');
+    if (empty($per_page) || $per_page < 0)
+      $per_page = 10;
+    $selectedColumns = $request->input('columns'); // 返すカラム配列
+    $criteria = $request->input('criteria'); // 検索条件配列
 
-    $selected = $request->input('selected'); // 返すカラム配列
+    foreach ($criteria as $criterion) {
+      $column = $criterion['column']; // 検索条件対象カラム
+      $op = $criterion['op']; // 検索動作
+      $value = $criterion['value']; // 検索値
 
-    $field = $request->input('field'); // 検索条件対象カラム
-    $op = $request->input('op'); // 検索動作
-    $value = $request->input('value'); // 検索値
-
-    switch ($op) {
-    case "contains":
-      $query->contains($field, $value);
-      break;
-    case "startsWith":
-      $query->startsWith($field, $value);
-      break;
-    case "endsWith":
-      $query->endsWith($field, $value);
-      break;
-    case "match":
-      $query->match($field, $value);
-      break;
-    default:
-      return ['status' => 'error', 'body' => ['message' => 'op error', 'text' => 'request error']];
-      break;
+      switch ($op) {
+      case "contains":
+        $query->contains($column, $value);
+        break;
+      case "startsWith":
+        $query->startsWith($column, $value);
+        break;
+      case "endsWith":
+        $query->endsWith($column, $value);
+        break;
+      case "match":
+        $query->match($column, $value);
+        break;
+      default:
+        return ['status' => 'error', 'body' => ['message' => 'op error', 'text' => 'request error']];
+        break;
+      }
     }
-    return $query->get();
+    return $query->select($selectedColumns)->orderBy('id', 'asc')->paginate($per_page);
   }
+  /**
+   * カラム名配列を返す
+   */
   public function getSchema(Request $request) {
     return Schema::getColumnListing(User::make()->getTable());
   }
